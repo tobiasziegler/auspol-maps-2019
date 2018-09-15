@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://www.aec.gov.au/Electorates/gis/files/",
+  "downloadDir": "./download",
+  "downloads": [
+    { "state": "sa", "zipFile": "sa-july-2018-esri.zip" },
+    { "state": "vic", "zipFile": "vic-july-2018-esri.zip" },
+    { "state": "act", "zipFile": "act-july-2018-esri.zip" },
+    { "state": "qld", "zipFile": "qld-march-2018-esri.zip" },
+    { "state": "tas", "zipFile": "tas-november-2017-esri.zip" },
+    { "state": "nt", "zipFile": "nt-esri-07022017.zip" },
+    { "state": "nsw", "zipFile": "nsw-esri-06042016.zip" },
+    { "state": "wa", "zipFile": "wa-esri-19012016.zip" }
+  ]
+}
