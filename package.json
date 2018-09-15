@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A collection of maps of Australian federal electoral boundaries in GeoJSON and TopoJSON formats",
   "scripts": {
+    "download": "node download.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
