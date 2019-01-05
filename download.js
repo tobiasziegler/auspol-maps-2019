@@ -11,13 +11,17 @@ const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 const mkdirp = (dir, cb) => {
   if (dir === '.') return cb();
   fs.stat(dir, err => {
+    const parent = path.dirname(dir);
+
     if (err == null) return cb(); // already exists
 
-    var parent = path.dirname(dir);
     mkdirp(parent, () => {
       fs.mkdir(dir, cb);
     });
+
+    return true;
   });
+  return true;
 };
 
 // Check for download directory and create it if needed
@@ -28,30 +32,31 @@ if (!fs.existsSync(config.downloadDir)) {
 config.downloads.map(download => {
   fetch(`${config.baseUrl}${download.zipFile}`)
     // Save the downloaded zip file
-    .then(response => {
-      return new Promise((resolve, reject) => {
-        const stateDir = path.join(config.downloadDir, download.state);
+    .then(
+      response =>
+        new Promise((resolve, reject) => {
+          const stateDir = path.join(config.downloadDir, download.state);
 
-        // Check for state's download subdirectory and create it if needed
-        if (!fs.existsSync(stateDir)) {
-          fs.mkdirSync(stateDir);
-        }
+          // Check for state's download subdirectory and create it if needed
+          if (!fs.existsSync(stateDir)) {
+            fs.mkdirSync(stateDir);
+          }
 
-        const dest = fs.createWriteStream(
-          path.join(stateDir, download.zipFile)
-        );
-        response.body.pipe(dest);
-        response.body.on('error', err => {
-          reject(err);
-        });
-        dest.on('finish', () => {
-          resolve();
-        });
-        dest.on('error', err => {
-          reject(err);
-        });
-      });
-    })
+          const dest = fs.createWriteStream(
+            path.join(stateDir, download.zipFile)
+          );
+          response.body.pipe(dest);
+          response.body.on('error', err => {
+            reject(err);
+          });
+          dest.on('finish', () => {
+            resolve();
+          });
+          dest.on('error', err => {
+            reject(err);
+          });
+        })
+    )
     // Now extract the contents of the zip
     .then(() => {
       yauzl.open(
@@ -76,8 +81,8 @@ config.downloads.map(download => {
             } else {
               // ensure parent directory exists
               mkdirp(path.dirname(entryPath), () => {
-                zipfile.openReadStream(entry, (err, readStream) => {
-                  if (err) throw err;
+                zipfile.openReadStream(entry, (error, readStream) => {
+                  if (error) throw error;
                   readStream.on('end', () => {
                     zipfile.readEntry();
                   });
@@ -90,4 +95,5 @@ config.downloads.map(download => {
         }
       );
     });
+  return download;
 });
