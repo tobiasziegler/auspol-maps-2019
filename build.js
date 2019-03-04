@@ -20,17 +20,37 @@ const runMapshaper = (commands, description) =>
   });
 
 // Convert the ESRI shapefile for each state into GeoJSON
-config.downloads.map(download =>
-  runMapshaper(
-    `-i "${path.join(
-      config.downloadDir,
-      download.state,
-      download.shapefile
-    )}" -o format=geojson ${path.join(
-      config.downloadDir,
-      `${download.state}.json`
-    )}`
-  ).catch(error => {
-    console.log(`Error: ${error.message}`);
+const convertDownloads = () => {
+  return Promise.all(
+    config.downloads.map(download =>
+      runMapshaper(
+        `-i "${path.join(
+          config.downloadDir,
+          download.state,
+          download.shapefile
+        )}" -o format=geojson ${path.join(
+          config.downloadDir,
+          `${download.state}.json`
+        )}`
+      )
+    )
+  );
+};
+
+convertDownloads()
+  .then(() => {
+    // Combine the state and territory GeoJSON files into a national file
+    const inputs = config.downloads
+      .map(download => path.join(config.downloadDir, `${download.state}.json`))
+      .join(' ');
+
+    runMapshaper(
+      `-i combine-files ${inputs} -merge-layers -o ${path.join(
+        config.downloadDir,
+        'australia.json'
+      )}`
+    );
   })
-);
+  .catch(error => {
+    console.log(`Error: ${error.message}`);
+  });
