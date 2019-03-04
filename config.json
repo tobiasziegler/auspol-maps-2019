@@ -10,5 +10,18 @@
     { "state": "nt", "zipFile": "nt-esri-07022017.zip" },
     { "state": "nsw", "zipFile": "nsw-esri-06042016.zip" },
     { "state": "wa", "zipFile": "wa-esri-19012016.zip" }
+  ],
+  "shapefiles": [
+    { "state": "sa", "filename": "E_FINAL_region.shp" },
+    { "state": "vic", "filename": "E_AUGFN3_region.shp" },
+    { "state": "act", "filename": "E_ACT_18_region.shp" },
+    { "state": "qld", "filename": "E_AUGEC_region.shp" },
+    { "state": "tas", "filename": "E_FINAL_region.shp" },
+    { "state": "nt", "filename": "E_Propos_region.shp" },
+    { "state": "nsw", "filename": "NSW_electoral_boundaries_25-02-2016.shp" },
+    {
+      "state": "wa",
+      "filename": "Shape (ESRI)/WA_Electoral_Boundaries_19-01-2016.shp"
+    }
   ]
 }
