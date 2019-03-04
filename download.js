@@ -30,7 +30,7 @@ if (!fs.existsSync(config.downloadDir)) {
 }
 
 config.downloads.map(download => {
-  fetch(`${config.baseUrl}${download.zipFile}`)
+  fetch(`${config.baseUrl}${download.zip}`)
     // Save the downloaded zip file
     .then(
       response =>
@@ -42,9 +42,7 @@ config.downloads.map(download => {
             fs.mkdirSync(stateDir);
           }
 
-          const dest = fs.createWriteStream(
-            path.join(stateDir, download.zipFile)
-          );
+          const dest = fs.createWriteStream(path.join(stateDir, download.zip));
           response.body.pipe(dest);
           response.body.on('error', err => {
             reject(err);
@@ -60,7 +58,7 @@ config.downloads.map(download => {
     // Now extract the contents of the zip
     .then(() => {
       yauzl.open(
-        path.join(config.downloadDir, download.state, download.zipFile),
+        path.join(config.downloadDir, download.state, download.zip),
         { lazyEntries: true },
         (err, zipfile) => {
           if (err) throw err;

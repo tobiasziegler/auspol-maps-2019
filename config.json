@@ -2,26 +2,45 @@
   "baseUrl": "https://www.aec.gov.au/Electorates/gis/files/",
   "downloadDir": "./download",
   "downloads": [
-    { "state": "sa", "zipFile": "sa-july-2018-esri.zip" },
-    { "state": "vic", "zipFile": "vic-july-2018-esri.zip" },
-    { "state": "act", "zipFile": "act-july-2018-esri.zip" },
-    { "state": "qld", "zipFile": "qld-march-2018-esri.zip" },
-    { "state": "tas", "zipFile": "tas-november-2017-esri.zip" },
-    { "state": "nt", "zipFile": "nt-esri-07022017.zip" },
-    { "state": "nsw", "zipFile": "nsw-esri-06042016.zip" },
-    { "state": "wa", "zipFile": "wa-esri-19012016.zip" }
-  ],
-  "shapefiles": [
-    { "state": "sa", "filename": "E_FINAL_region.shp" },
-    { "state": "vic", "filename": "E_AUGFN3_region.shp" },
-    { "state": "act", "filename": "E_ACT_18_region.shp" },
-    { "state": "qld", "filename": "E_AUGEC_region.shp" },
-    { "state": "tas", "filename": "E_FINAL_region.shp" },
-    { "state": "nt", "filename": "E_Propos_region.shp" },
-    { "state": "nsw", "filename": "NSW_electoral_boundaries_25-02-2016.shp" },
+    {
+      "state": "act",
+      "zip": "act-july-2018-esri.zip",
+      "shapefile": "E_ACT_18_region.shp"
+    },
+    {
+      "state": "nsw",
+      "zip": "nsw-esri-06042016.zip",
+      "shapefile": "NSW_electoral_boundaries_25-02-2016.shp"
+    },
+    {
+      "state": "nt",
+      "zip": "nt-esri-07022017.zip",
+      "shapefile": "E_Propos_region.shp"
+    },
+    {
+      "state": "qld",
+      "zip": "qld-march-2018-esri.zip",
+      "shapefile": "E_AUGEC_region.shp"
+    },
+    {
+      "state": "sa",
+      "zip": "sa-july-2018-esri.zip",
+      "shapefile": "E_FINAL_region.shp"
+    },
+    {
+      "state": "tas",
+      "zip": "tas-november-2017-esri.zip",
+      "shapefile": "E_FINAL_region.shp"
+    },
+    {
+      "state": "vic",
+      "zip": "vic-july-2018-esri.zip",
+      "shapefile": "E_AUGFN3_region.shp"
+    },
     {
       "state": "wa",
-      "filename": "Shape (ESRI)/WA_Electoral_Boundaries_19-01-2016.shp"
+      "zip": "wa-esri-19012016.zip",
+      "shapefile": "Shape (ESRI)/WA_Electoral_Boundaries_19-01-2016.shp"
     }
   ]
 }

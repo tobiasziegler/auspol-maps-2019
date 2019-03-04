@@ -20,15 +20,15 @@ const runMapshaper = (commands, description) =>
   });
 
 // Convert the ESRI shapefile for each state into GeoJSON
-config.shapefiles.map(shapefile =>
+config.downloads.map(download =>
   runMapshaper(
     `-i "${path.join(
       config.downloadDir,
-      shapefile.state,
-      shapefile.filename
+      download.state,
+      download.shapefile
     )}" -o format=geojson ${path.join(
       config.downloadDir,
-      `${shapefile.state}.json`
+      `${download.state}.json`
     )}`
   ).catch(error => {
     console.log(`Error: ${error.message}`);
