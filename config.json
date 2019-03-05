@@ -43,5 +43,6 @@
       "shapefile": "Shape (ESRI)/WA_Electoral_Boundaries_19-01-2016.shp"
     }
   ],
-  "baseFileName": "auspol-maps-2019"
+  "baseFileName": "auspol-maps-2019",
+  "simplifyPercentages": [20, 10, 5, 1]
 }

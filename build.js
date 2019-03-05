@@ -63,6 +63,24 @@ convertDownloads()
       'Converting GeoJSON file to TopoJSON'
     );
   })
+  .then(() => {
+    // Create TopoJSON versions of the full map with different simplification levels
+    console.log(
+      '\nCreating simplified (smaller) versions of the full TopoJSON file:'
+    );
+    return Promise.all(
+      config.simplifyPercentages.map(percentage =>
+        runMapshaper(
+          `-i topojson/${
+            config.baseFileName
+          }-p100-alldivisions.json -simplify weighted percentage=${percentage}% -o topojson/${
+            config.baseFileName
+          }-p${percentage}-alldivisions.json format=topojson`,
+          `Simplify retaining ${percentage} of removable points`
+        )
+      )
+    );
+  })
   .catch(error => {
     console.log(`Error: ${error.message}`);
   });
