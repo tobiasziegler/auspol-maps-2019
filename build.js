@@ -21,6 +21,8 @@ const runMapshaper = (commands, description) =>
 
 // Convert the ESRI shapefile for each state into GeoJSON
 const convertDownloads = () => {
+  console.log('Converting downloaded shapefiles to GeoJSON');
+
   return Promise.all(
     config.downloads.map(download =>
       runMapshaper(
@@ -48,7 +50,8 @@ convertDownloads()
       `-i combine-files ${inputs} -merge-layers -o ${path.join(
         config.downloadDir,
         'australia.json'
-      )}`
+      )}`,
+      'Combining state and territory GeoJSON files'
     );
   })
   .catch(error => {
