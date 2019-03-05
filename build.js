@@ -46,12 +46,21 @@ convertDownloads()
       .map(download => path.join(config.downloadDir, `${download.state}.json`))
       .join(' ');
 
-    runMapshaper(
+    return runMapshaper(
       `-i combine-files ${inputs} -merge-layers -o ${path.join(
         config.downloadDir,
-        'australia.json'
+        `${config.baseFileName}-p100-alldivisions.json`
       )}`,
       'Combining state and territory GeoJSON files'
+    );
+  })
+  .then(() => {
+    // Convert the GeoJSON file to TopoJSON
+    return runMapshaper(
+      `-i download/${
+        config.baseFileName
+      }-p100-alldivisions.json -o topojson/ format=topojson`,
+      'Converting GeoJSON file to TopoJSON'
     );
   })
   .catch(error => {
