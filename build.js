@@ -81,6 +81,28 @@ convertDownloads()
       )
     );
   })
+  .then(() => {
+    // Get an array of the filenames in the topojson directory
+    console.log('\nGetting list of TopoJSON files...');
+    return new Promise((resolve, reject) => {
+      fs.readdir('topojson', (error, files) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(files);
+        }
+      });
+    });
+  })
+  .then(files => {
+    console.log('Converting TopoJSON files to GeoJSON...');
+    // Convert all TopoJSON files to GeoJSON
+    return Promise.all(
+      files.map(file =>
+        runMapshaper(`-i topojson/${file} -o geojson/${file} format=geojson`)
+      )
+    );
+  })
   .catch(error => {
     console.log(`Error: ${error.message}`);
   });
