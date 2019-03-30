@@ -1,7 +1,7 @@
 {
-  "name": "auspol-maps",
+  "name": "auspol-maps-2019",
   "version": "0.1.0",
-  "description": "A collection of maps of Australian federal electoral boundaries in GeoJSON and TopoJSON formats",
+  "description": "A collection of maps of Australian federal electoral boundaries in GeoJSON and TopoJSON formats - 2019 election edition",
   "scripts": {
     "download": "node download.js",
     "build": "node build.js",
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tobiasziegler/auspol-maps.git"
+    "url": "git+https://github.com/tobiasziegler/auspol-maps-2019.git"
   },
   "author": "David Mallard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tobiasziegler/auspol-maps/issues"
+    "url": "https://github.com/tobiasziegler/auspol-maps-2019/issues"
   },
-  "homepage": "https://github.com/tobiasziegler/auspol-maps#readme",
+  "homepage": "https://github.com/tobiasziegler/auspol-maps-2019#readme",
   "private": true,
   "devDependencies": {
     "eslint": "^5.15.0",
