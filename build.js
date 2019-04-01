@@ -82,6 +82,30 @@ convertDownloads()
     );
   })
   .then(() => {
+    // Create single-division map files at each simplification level
+    console.log(
+      '\nCreating single-division map files at each simplification level:'
+    );
+    return Promise.all(
+      config.simplifyPercentages.map(percentage => {
+        console.log(`Maps at ${percentage}% simplification level...`);
+        return Promise.all(
+          config.divisions.map(division =>
+            runMapshaper(
+              `-i topojson/${
+                config.baseFileName
+              }-p${percentage}-alldivisions.json -filter 'Elect_div === "${
+                division.name
+              }"' -o topojson/${config.baseFileName}-p${percentage}-${
+                division.filename
+              }.json`
+            )
+          )
+        );
+      })
+    );
+  })
+  .then(() => {
     // Get an array of the filenames in the topojson directory
     console.log('\nGetting list of TopoJSON files...');
     return new Promise((resolve, reject) => {
