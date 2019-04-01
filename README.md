@@ -1,6 +1,6 @@
 # auspol-maps-2019
 
-A collection of GeoJSON and TopoJSON files representing Commonwealth electoral boundaries for the and 2019 federal election. The files have been created by merging and transforming the most spatial data files for the most recent redistribution in each state provided by the Australian Electoral Commission.
+A collection of GeoJSON and TopoJSON files representing Commonwealth electoral boundaries for the 2019 federal election. The files have been created by merging and transforming the spatial data files for the most recent redistribution in each state provided by the Australian Electoral Commission.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ From a command line prompt in the project directory, you can rebuild the maps wi
 2.  `npm run download` to download the ESRI shapefiles from the AEC website.
 3.  `npm run build` to merge the original files and transform them to GeoJSON and TopoJSON.
 
-The project uses [Mapshaper](https://github.com/mbloch/mapshaper) to convert the original MapInfo files to an equivalent GeoJSON file and for all subsequent transformations.
+The project uses [Mapshaper](https://github.com/mbloch/mapshaper) to convert the original ESRI shapefiles to an equivalent GeoJSON file and for all subsequent transformations.
 
 The build process first converts the original map files to GeoJSON and then merges them into a national file. The national GeoJSON file is then converted to TopoJSON, which is the format used for all subsequent transformations (e.g., simplification), because TopoJSON preserves shared topology and ensures the boundaries shared by divisions won't be transformed separately within each division's geometry. Once all transformations have been completed, all of the TopoJSON files are then converted back to GeoJSON for use cases where TopoJSON isn't supported.
 
